@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance Analysis</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            display: none;
+            margin-top: 25px;
+        }
+
+        .result-box {
+            background: #f1f5f9;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        .result-box p {
+            margin: 8px 0;
+            font-size: 17px;
+        }
+
+        .performance {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                margin: 15px auto;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Performance Analysis</h1>
+
+        <label>Student Name</label>
+        <input type="text" id="name" placeholder="Enter student name">
+
+        <label>English Marks</label>
+        <input type="number" id="english" placeholder="Enter marks">
+
+        <label>Maths Marks</label>
+        <input type="number" id="maths" placeholder="Enter marks">
+
+        <label>Science Marks</label>
+        <input type="number" id="science" placeholder="Enter marks">
+
+        <label>Computer Marks</label>
+        <input type="number" id="computer" placeholder="Enter marks">
+
+        <label>Social Science Marks</label>
+        <input type="number" id="social" placeholder="Enter marks">
+
+        <button onclick="analyzePerformance()">
+            Analyze Performance
+        </button>
+
+        <div class="result" id="result">
+
+            <div class="result-box">
+                <p><strong>Student:</strong>
+                    <span id="studentName"></span>
+                </p>
+
+                <p><strong>Total Marks:</strong>
+                    <span id="total"></span> / 500
+                </p>
+
+                <p><strong>Percentage:</strong>
+                    <span id="percentage"></span>%
+                </p>
+
+                <p><strong>Grade:</strong>
+                    <span id="grade"></span>
+                </p>
+
+                <p class="performance">
+                    Performance: <span id="performance"></span>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function analyzePerformance() {
+
+            let name = document.getElementById("name").value;
+
+            let english = Number(document.getElementById("english").value);
+            let maths = Number(document.getElementById("maths").value);
+            let science = Number(document.getElementById("science").value);
+            let computer = Number(document.getElementById("computer").value);
+            let social = Number(document.getElementById("social").value);
+
+            let total = english + maths + science + computer + social;
+
+            let percentage = (total / 500) * 100;
+
+            let grade;
+            let performance;
+
+            if (percentage >= 90) {
+                grade = "A+";
+                performance = "Excellent";
+            }
+            else if (percentage >= 80) {
+                grade = "A";
+                performance = "Very Good";
+            }
+            else if (percentage >= 70) {
+                grade = "B";
+                performance = "Good";
+            }
+            else if (percentage >= 60) {
+                grade = "C";
+                performance = "Average";
+            }
+            else if (percentage >= 50) {
+                grade = "D";
+                performance = "Needs Improvement";
+            }
+            else {
+                grade = "F";
+                performance = "Poor";
+            }
+
+            document.getElementById("studentName").innerHTML = name;
+
+            document.getElementById("total").innerHTML = total;
+
+            document.getElementById("percentage").innerHTML =
+                percentage.toFixed(2);
+
+            document.getElementById("grade").innerHTML = grade;
+
+            document.getElementById("performance").innerHTML =
+                performance;
+
+            document.getElementById("result").style.display = "block";
+        }
+
+    </script>
+
+</body>
+</html>
